@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import '../styles/App.css';
 
 function Odd() {
-  return <h1>Odd Component</h1>;
+  return <h1 id="odd">Odd Component</h1>;
 }
 
 function Even() {
-  return <h1>Even Component</h1>;
+  return <h1  id="even">Even Component</h1>;
 }
 
 function App() {
