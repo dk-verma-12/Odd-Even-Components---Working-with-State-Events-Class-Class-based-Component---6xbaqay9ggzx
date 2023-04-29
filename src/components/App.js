@@ -29,7 +29,7 @@ function App() {
       ) : (
         <Odd />
       )}
-      <button onClick={toggleVisibility}>Toggle Visibility</button>
+      <button onClick={toggleVisibility} id="toggle">Toggle Visibility</button>
       {isEvenVisible ? (
         <React.Fragment>
           {() => handleUnmount("Even")}
