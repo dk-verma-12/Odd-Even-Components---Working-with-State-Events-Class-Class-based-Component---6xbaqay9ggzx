@@ -1,47 +1,47 @@
-import React from 'react'
+
+
+import React, { useState } from 'react';
 import '../styles/App.css';
 
-class Odd extends React.Component {
-
-  render() {
-    return (
-      <div id="odd">
-        I am odd
-      </div>
-    )
-  }
+function Odd() {
+  return <h1>Odd Component</h1>;
 }
 
-class Even extends React.Component {
-
-  render() {
-    return (
-      <div id="even">
-        I am even
-      </div>
-    )
-  }
-}
-class App extends React.Component {
-  handleChange(){
-    this.setState({even: !this.state.even})
-  }
-  constructor(props){
-    super(props)
-    this.state = {even: true}
-    this.handleChange =  this.handleChange.bind(this)
-  }
-  render() {
-    return (
-      <div id="main">
-        {this.state.even ? <Even /> : <Odd />}
-
-        <button id="toggle" onClick={this.handleChange}>Change</button>
-      </div>
-    )
-  }
-
+function Even() {
+  return <h1>Even Component</h1>;
 }
 
+function App() {
+  const [isEvenVisible, setIsEvenVisible] = useState(true);
+
+  const toggleVisibility = () => {
+    setIsEvenVisible(!isEvenVisible);
+  };
+
+  const handleUnmount = (componentName) => {
+    console.log(`${componentName} is unmounted`);
+  };
+
+  return (
+    <div>
+      {isEvenVisible ? (
+        <Even />
+      ) : (
+        <Odd />
+      )}
+      <button onClick={toggleVisibility}>Toggle Visibility</button>
+      {isEvenVisible ? (
+        <React.Fragment>
+          {() => handleUnmount("Even")}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {() => handleUnmount("Odd")}
+        </React.Fragment>
+      )}
+    </div>
+  );
+}
 
 export default App;
+
